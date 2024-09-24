@@ -132,7 +132,7 @@ const AgencySurvey = () => {
                         <img src={logoAfrijet} alt='logo Afrijet' />
                     </div>
                     <div className='customer_survey'>
-                        <h1>Enquête Expérience en vol</h1>
+                        <h1>Enquête en vol</h1>
                     </div>
                 </div>
                 <div className='fil_ariane'>
@@ -278,16 +278,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Excellente"
+                                            id="Excellente_experience"
                                             value="Excellente"
-                                            name="Excellente"
+                                            name="Excellente_experience"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, experience_vol: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Excellente" className="font-medium text-gray-900">
+                                        <label htmlFor="Excellente_experience" className="font-medium text-gray-900">
                                             Excellente
                                         </label>
                                     </div>
@@ -295,16 +295,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Bonne"
+                                            id="Bonne_experience"
                                             value="Bonne"
-                                            name="Bonne"
+                                            name="Bonne_experience"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, experience_vol: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Bonne" className="font-medium text-gray-900">
+                                        <label htmlFor="Bonne_experience" className="font-medium text-gray-900">
                                             Bonne
                                         </label>
                                     </div>
@@ -314,16 +314,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Moyenne"
+                                            id="Moyenne_experience"
                                             value="Moyenne"
-                                            name="Moyenne"
+                                            name="Moyenne_experience"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, experience_vol: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Moyenne" className="font-medium text-gray-900">
+                                        <label htmlFor="Moyenne_experience" className="font-medium text-gray-900">
                                             Moyenne
                                         </label>
                                     </div>
@@ -331,16 +331,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Mauvaise"
+                                            id="Mauvaise_experience"
                                             value="Mauvaise"
-                                            name="Mauvaise"
+                                            name="Mauvaise_experience"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, experience_vol: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Mauvaise" className="font-medium text-gray-900">
+                                        <label htmlFor="Mauvaise_experience" className="font-medium text-gray-900">
                                             Mauvaise
                                         </label>
                                     </div>
@@ -383,7 +383,7 @@ const AgencySurvey = () => {
                                             name="horaire_non"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
+                                            onChange={(e) => setData({ ...data, horaire_vol: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
@@ -402,19 +402,19 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-3 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.tarification_oui}
+                                            checked={CheckedItems.confortable}
                                             onClick={handleChange}
-                                            disabled={CheckedItems.tarification_non}
-                                            id="tarification_oui"
-                                            value="satisfaire du tarif"
-                                            name="tarification_oui"
+                                            disabled={CheckedItems.inconfortable}
+                                            id="Confortable"
+                                            value="Confortable"
+                                            name="Confortable"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
+                                            onChange={(e) => setData({ ...data, confort_siege: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="tarification_oui" className="font-medium text-gray-900">
+                                        <label htmlFor="Confortable" className="font-medium text-gray-900">
                                             Confortable
                                         </label>
                                     </div>
@@ -422,19 +422,19 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-3 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.tarification_non}
+                                            checked={CheckedItems.inconfortable}
                                             onClick={handleChange}
-                                            disabled={CheckedItems.tarification_oui}
-                                            id="tarification_non"
-                                            value="pas satisfaire du tarif"
-                                            name="tarification_non"
+                                            disabled={CheckedItems.confortable}
+                                            id="Inconfortable"
+                                            value="Inconfortable"
+                                            name="Inconfortable"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
+                                            onChange={(e) => setData({ ...data, confort_siege: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="tarification_non" className="font-medium text-gray-900">
+                                        <label htmlFor="Inconfortable" className="font-medium text-gray-900">
                                             Inconfortable
                                         </label>
                                     </div>
@@ -457,7 +457,7 @@ const AgencySurvey = () => {
                                             name="satisfaisante"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
+                                            onChange={(e) => setData({ ...data, proprete: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
@@ -477,7 +477,7 @@ const AgencySurvey = () => {
                                             name="insatisfaisante"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
+                                            onChange={(e) => setData({ ...data, proprete: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
@@ -601,16 +601,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Bonne"
+                                            id="Bon_repas"
                                             value="Bonne"
-                                            name="Bonne"
+                                            name="Bon_repas"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, qualite_repas: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Bonne" className="font-medium text-gray-900">
+                                        <label htmlFor="Bon_repas" className="font-medium text-gray-900">
                                             Bonne
                                         </label>
                                     </div>
@@ -618,16 +618,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Moyenne"
+                                            id="Moyenne_repas"
                                             value="Moyenne"
-                                            name="Moyenne"
+                                            name="Moyenne_repas"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, qualite_repas: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Moyenne" className="font-medium text-gray-900">
+                                        <label htmlFor="Moyenne_repas" className="font-medium text-gray-900">
                                             Moyenne
                                         </label>
                                     </div>
@@ -654,16 +654,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Mauvaise"
+                                            id="Mauvaise_repas"
                                             value="Mauvaise"
-                                            name="Mauvaise"
+                                            name="Mauvaise_repas"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, qualite_repas: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Mauvaise" className="font-medium text-gray-900">
+                                        <label htmlFor="Mauvaise_repas" className="font-medium text-gray-900">
                                             Mauvaise
                                         </label>
                                     </div>
@@ -726,16 +726,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Excellente"
+                                            id="Excellente_courtoise"
                                             value="Excellente"
-                                            name="Excellente"
+                                            name="Excellente_courtoise"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, courtoisie: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Excellente" className="font-medium text-gray-900">
+                                        <label htmlFor="Excellente_courtoise" className="font-medium text-gray-900">
                                             Excellente
                                         </label>
                                     </div>
@@ -743,16 +743,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Bonne"
+                                            id="Bonne_courtoise"
                                             value="Bonne"
-                                            name="Bonne"
+                                            name="Bonne_courtoise"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, courtoisie: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Bonne" className="font-medium text-gray-900">
+                                        <label htmlFor="Bonne_courtoise" className="font-medium text-gray-900">
                                             Bonne
                                         </label>
                                     </div>
@@ -762,16 +762,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Moyenne"
+                                            id="Moyenne_courtoisie"
                                             value="Moyenne"
-                                            name="Moyenne"
+                                            name="Moyenne_courtoisie"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, courtoisie: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Moyenne" className="font-medium text-gray-900">
+                                        <label htmlFor="Moyenne_courtoisie" className="font-medium text-gray-900">
                                             Moyenne
                                         </label>
                                     </div>
@@ -779,16 +779,16 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            id="Mauvaise"
+                                            id="Mauvaise_courtoisie"
                                             value="Mauvaise"
-                                            name="Mauvaise"
+                                            name="Mauvaise_courtoisie"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, courtoisie: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Mauvaise" className="font-medium text-gray-900">
+                                        <label htmlFor="Mauvaise_courtoisie" className="font-medium text-gray-900">
                                             Mauvaise
                                         </label>
                                     </div>

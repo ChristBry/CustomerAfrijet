@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../styles/style.css'
 import axios from 'axios'
 import countryData from '../composants/country.json';
@@ -307,16 +307,16 @@ const AgencySurvey = () => {
                                             checked={CheckedItems.transport_passagers}
                                             onClick={handleChange}
                                             disabled={CheckedItems.transport_fret}
-                                            id="Transport de passagers"
+                                            id="Transport_passagers"
                                             value="Transport de passagers"
-                                            name="Transport de passagers"
+                                            name="Transport_passagers"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, service: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Transport de passagers" className="font-medium text-gray-900">
+                                        <label htmlFor="Transport_passagers" className="font-medium text-gray-900">
                                             Transport de passagers
                                         </label>
                                     </div>
@@ -327,16 +327,16 @@ const AgencySurvey = () => {
                                             checked={CheckedItems.transport_fret}
                                             onClick={handleChange}
                                             disabled={CheckedItems.transport_passagers}
-                                            id="Transport de fret"
+                                            id="Transport_fret"
                                             value="Transport de fret"
-                                            name="Transport de fret"
+                                            name="Transport_fret"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, service: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Transport de fret" className="font-medium text-gray-900">
+                                        <label htmlFor="Transport_fret" className="font-medium text-gray-900">
                                             Transport de fret
                                         </label>
                                     </div>
