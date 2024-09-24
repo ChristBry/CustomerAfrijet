@@ -1,30 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=SUSE:wght@100..800&display=swap');
 
+/* Proprietes generales */
 :root {
-    --color-text-primary: #fff; 
+    --color-text-primary: #fff;
     --bg-principal: red;
 }
+
 * {
     margin: 0;
     padding: 0;
 }
+
 body {
     background: url('../assets/images/bg4.PNG');
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 legend {
     font-family: 'Roboto', 'Arial';
 }
+
 label {
     font-family: 'Roboto', 'Arial';
 }
+
 button {
     background-color: var(--bg-principal);
 }
-p{
+
+h3 {
+    font-family: "SUSE", "Arial";
+}
+
+p {
     font-family: 'Poppins', 'Arial';
 }
+
+span {
+    font-family: 'SUSE', 'Arial';
+}
+
 section {
     margin: 0 400px;
     background-color: white;
@@ -34,7 +50,9 @@ section {
 .header {
     height: 150px;
     margin: 0 400px;
+    background: var(--bg-principal);
 }
+
 .logo {
     float: left;
     width: 50%;
@@ -45,18 +63,21 @@ section {
     float: right;
     width: 50%;
 }
+
 .customer_survey h1 {
-    padding-top: 50px;
-    margin-left: 80px;
+    padding-top: 40px;
+    margin-left: 60px;
     color: var(--color-text-primary);
     font-family: 'SUSE', 'Arial';
     font-size: 35px;
 }
 
+/* Composant fil d'ariane */
 .fil_ariane {
     background-color: brown;
     margin: 0 400px;
 }
+
 .fil_ariane p {
     color: var(--color-text-primary);
     font-family: 'Poppins', 'Arial';
@@ -64,28 +85,115 @@ section {
     font-size: 15px;
 }
 
+/* Body */
 .info-generales {
-    position: relative;
-    top: 15px;
-    left: 25%;
-    right: 0;
-    bottom: 15px;
+    margin: 0 auto;
     width: 500px;
     background-color: var(--bg-principal);
     border-radius: 5px;
     text-align: center;
 }
+
+.info-generales-info {
+    margin: 0 auto;
+    width: 330px;
+    background-color: var(--bg-principal);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.info-generales-info h2 {
+    color: var(--color-text-primary);
+    font-family: 'Poppins', 'Arial';
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
 .info-generales h2 {
     color: var(--color-text-primary);
     font-family: 'Poppins', 'Arial';
     font-size: 18px;
     text-transform: uppercase;
 }
+
+.space {
+    background-color: white;
+}
+
 .btn-valider {
-        font-family: 'Poppins', 'Arial';
-        font-size: 18px;
-        margin: 15px 45%;
-    }
+    font-family: 'Poppins', 'Arial';
+    font-size: 18px;
+    margin: 15px 45%;
+}
+
+/* Page Bienvenue */
+.header-welcome {
+    background-color: var(--bg-principal);
+    height: 100px;
+    margin: 0;
+}
+
+Link {
+    width: 150px;
+}
+
+.logo-afrijet {
+    width: 30%;
+    margin: 0 auto;
+}
+
+body {
+    background: white;
+}
+
+.welcome-section {
+    margin-top: -60px;
+}
+
+.options li {
+    background: brown;
+    border-radius: 5px;
+}
+
+.options span {
+    font-size: 20px;
+    color: white;
+}
+
+.options i {
+    font-size: 20px;
+    color: #fff;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.popup-content i {
+    color: brown;
+    font-size: 20px;
+}
+.popup-content h4 {
+    font-family: 'SUSE', 'Arial';
+    font-size: 20px;
+}
+
+/* Responsive pour les ecrans de taille max = 1300px (tablette) */
 @media (max-width: 1300px) {
     section {
         margin: 0;
@@ -100,7 +208,9 @@ section {
         background-color: var(--bg-principal);
         height: 175px;
         margin: 0;
+        position: fixed;
     }
+
     .logo {
         float: left;
         width: 50%;
@@ -111,9 +221,10 @@ section {
         float: right;
         width: 50%;
     }
+
     .customer_survey h1 {
-        padding-top: 25px;
-        margin-left: 10px;
+        padding-top: 40px;
+        margin-left: 50px;
         color: var(--color-text-primary);
         font-family: 'SUSE', 'Arial';
         font-size: 24px;
@@ -123,7 +234,11 @@ section {
     .fil_ariane {
         background-color: brown;
         margin: 0;
+        position: fixed;
+        top: 175px;
+        width: 100vw;
     }
+
     .fil_ariane p {
         color: var(--color-text-primary);
         font-family: 'Poppins', 'Arial';
@@ -133,29 +248,106 @@ section {
 
     /* Debut de la page AgenceSurvey */
     .info-generales {
-        position: relative;
+        margin: 0 auto;
         width: 330px;
         background-color: var(--bg-principal);
         border-radius: 5px;
-        top: 10px;
-        left: 40%;
-        right: 0;
-        bottom: 0;
         text-align: center;
     }
+
+    .info-generales-info {
+        margin: 0 auto;
+        margin-top: 210px;
+        width: 330px;
+        background-color: var(--bg-principal);
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .info-generales-info h2 {
+        color: var(--color-text-primary);
+        font-family: 'Poppins', 'Arial';
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
     .info-generales h2 {
         color: var(--color-text-primary);
         font-family: 'Poppins', 'Arial';
         font-size: 18px;
         text-transform: uppercase;
     }
+
+    .space {
+        background-color: white;
+    }
+
     .btn-valider {
         font-family: 'Poppins', 'Arial';
         font-size: 18px;
-        margin: 15px 40%;
+        margin: 15px auto;
+    }
+
+    /* Page Bienvenue */
+    .header-welcome {
+        background-color: var(--bg-principal);
+        height: 100px;
+        margin: 0;
+    }
+
+    body {
+        background: white;
+    }
+
+    .welcome-section {
+        margin-top: -60px;
+    }
+
+    .options li {
+        background: brown;
+        border-radius: 5px;
+    }
+
+    .options span {
+        font-size: 20px;
+        color: white;
+    }
+
+    .options i {
+        font-size: 20px;
+        color: #fff;
+    }
+
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .popup-content i {
+        color: brown;
+        font-size: 20px;
+    }
+    .popup-content h4 {
+        font-family: 'SUSE', 'Arial';
+        font-size: 20px;
     }
 }
-  
+
+/* Responsive pour les telepones */
 @media (max-width: 500px) {
 
     section {
@@ -171,7 +363,9 @@ section {
         background-color: var(--bg-principal);
         height: 100px;
         margin: 0;
+        position: fixed;
     }
+
     .logo {
         float: left;
         width: 50%;
@@ -182,6 +376,7 @@ section {
         float: right;
         width: 50%;
     }
+
     .customer_survey h1 {
         padding-top: 25px;
         margin-left: 10px;
@@ -194,7 +389,11 @@ section {
     .fil_ariane {
         background-color: brown;
         margin: 0;
+        position: fixed;
+        top: 100px;
+        width: 100vw;
     }
+
     .fil_ariane p {
         color: var(--color-text-primary);
         font-family: 'Poppins', 'Arial';
@@ -204,25 +403,106 @@ section {
 
     /* Debut de la page AgenceSurvey */
     .info-generales {
-        position: relative;
+        margin: 0 auto;
         width: 330px;
         background-color: var(--bg-principal);
         border-radius: 5px;
-        top: 10px;
-        left: 25px;
-        right: 0;
-        bottom: 0;
         text-align: center;
     }
+
+    .info-generales-info {
+        margin: 0 auto;
+        margin-top: 130px;
+        width: 330px;
+        background-color: var(--bg-principal);
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .info-generales-info h2 {
+        color: var(--color-text-primary);
+        font-family: 'Poppins', 'Arial';
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    .space {
+        background-color: white;
+    }
+
     .info-generales h2 {
         color: var(--color-text-primary);
         font-family: 'Poppins', 'Arial';
         font-size: 18px;
         text-transform: uppercase;
     }
+
     .btn-valider {
         font-family: 'Poppins', 'Arial';
         font-size: 18px;
-        margin: 15px 120px;
+        margin: 15px auto;
+    }
+
+    /* Page Bienvenue */
+    .header-welcome {
+        background-color: var(--bg-principal);
+        height: 100px;
+        margin: 0;
+    }
+
+    .logo-afrijet {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    body {
+        background: white;
+    }
+
+    .welcome-section {
+        margin-top: -30px;
+    }
+
+    .options li {
+        background: brown;
+        border-radius: 5px;
+    }
+
+    .options span {
+        font-size: 20px;
+        color: white;
+    }
+
+    .options i {
+        font-size: 20px;
+        color: #fff;
+    }
+
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .popup-content i {
+        color: brown;
+        font-size: 20px;
+    }
+    .popup-content h4 {
+        font-family: 'SUSE', 'Arial';
+        font-size: 20px;
     }
 }

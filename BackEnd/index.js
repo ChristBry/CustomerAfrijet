@@ -1,95 +1,26 @@
-// server/index.js
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv/config');
+import('pocketbase').then(PocketBaseModule => {
+const PocketBase = PocketBaseModule.default; // Importation du package PocketBase
+const url = 'https://afrijet.pockethost.io/' // lien vers PocketHost.io
+const client = new PocketBase(url) // creation d'une connexion avec PocketHost pour mon PocketBase
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-//Importer le modele ClientSurvey 
-const ClientSurvey = require('../BackEnd/models/clientsurvey');
-
-app.post('/survey', async (req, res) => {
-    console.log('Données reçues:', req.body); // Pour vérifier les données reçues
-    const {
-        sexe,
-        nationalite,
-        destination,
-        agence,
-        acceuil_agence,
-        raison_agence,
-        satisfaction_agent,
-        temps_attente,
-        tarification,
-        note_programme_fidelite,
-        note_salon_business,
-        note_bagage,
-        note_serviceUM,
-        note_animal_cabine,
-        note_animal_soute,
-        recommandation
-    } = req.body;
-
-    // Vérification des champs requis
-    if (!sexe || !nationalite || !destination || !agence || !acceuil_agence || !raison_agence ||
-        !satisfaction_agent || !temps_attente || !tarification || !note_programme_fidelite ||
-        !note_salon_business || !note_bagage || !note_serviceUM || !note_animal_cabine ||
-        !note_animal_soute || !recommandation) {
-        return res.status(400).json({ message: 'Tous les champs sont requis.' });
-    }
-
-    // Vérifiez l'état de la connexion
-    console.log('État de la connexion MongoDB :', mongoose.connection.readyState); // 1 = connecté, 0 = déconnecté
-    if (mongoose.connection.readyState !== 1) {
-        console.error('La connexion à MongoDB n’est pas active.');
-        return;
-    }
-
+// Fonction pour vérifier la connexion à la base de données
+async function checkDatabaseConnection() {
     try {
-        const newSurvey = new ClientSurvey(req.body);
-        await newSurvey.save();
-        res.status(201).json({ message: 'Enquête sauvegardée avec succès', survey: newSurvey });
+        // Authentifiez-vous avec le compte administrateur
+        await client.admins.authWithPassword('tchajipchrist23@gmail.com', 'Pockethost237');
+
+      // Vérifier la connexion en listant une collection
+      //const records = await client.collection('AgenceSurvey').getList();
+      
+      // Si la connexion réussit, affiche un message de confirmation
+      console.log('Connexion à la base de données réussie !');
+      // console.log('Données récupérées :', records);
     } catch (error) {
-        console.error('Erreur lors de la sauvegarde:', error);
-        res.status(500).json({ message: 'Erreur lors de la sauvegarde de l\'enquête', error });
+      // Si la connexion échoue, affiche l'erreur
+      console.error('Erreur de connexion à la base de données :', error);
     }
-});
-
-
-// Connexion à MongoDB
-mongoose.connect(process.env.MONGO_URL, {
-    
-    serverSelectionTimeoutMS: 10000, // Augmentez le délai d'attente si nécessaire
-    socketTimeoutMS: 45000, // Délai pour la socket
-}, 6000000)
-    .then(() => console.log('MongoDB connecté'))
-    .catch(err => console.error(err));
-
-mongoose.connection.once('open', () => {
-    console.log('Connexion établie avec MongoDB.');
-
-    // Appel de la fonction pour tester le ping
-    testPing();
-});
-
-// Fonction async pour tester le ping
-async function testPing() {
-    try {
-        const result = await mongoose.connection.db.command({ ping: 1 });
-        console.log('Réponse du ping MongoDB :', result);
-    } catch (error) {
-        console.error('Erreur lors du ping à MongoDB :', error);
-    }
-}
-
-mongoose.set('bufferCommands', false);
-
-// Démarrer le serveur
-app.listen(PORT, () => {
-    console.log(`Serveur en cours d'exécution`);
+  }
+  
+  // Appel de la fonction pour vérifier la connexion
+  checkDatabaseConnection()
 });

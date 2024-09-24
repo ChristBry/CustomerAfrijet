@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/style.css'
-import Header from '../composants/header'
-import Fildariane from '../composants/fildariane'
 import axios from 'axios'
 import countryData from '../composants/country.json';
 import { motion } from 'framer-motion'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion';
+import logoAfrijet from '../assets/images/Logo.png'
 
 const AgencySurvey = () => {
 
@@ -21,8 +20,8 @@ const AgencySurvey = () => {
             opacity: 1,
             x: 0, // L'élément descend à sa position d'origine
             transition: {
-                duration: 0.5,
-                ease: 'easeIn',
+                duration: 0.2,
+                ease: 'easeOut',
             },
         },
     }
@@ -40,41 +39,28 @@ const AgencySurvey = () => {
     // Initialisation de l'etat de ma variable data grace au hook UseState pour recuperer les donnees entrees par les utilisateurs
     const [data, setData] = useState({
         date: date,
-        sexe: '',
-        nationalite: '',
-        destination: '',
-        agence: '',
-        acceuil_agence: '',
-        raison_agence: '',
-        satisfaction_agent: '',
-        temps_attente: '',
-        tarification: '',
-        note_programme_fidelite: '',
-        note_salon_business: '',
-        note_bagage: '',
-        note_serviceUM: '',
-        note_animal_cabine: '',
-        note_animal_soute: '',
+        anciennete: '',
+        experience_globale: '',
+        localisation: '',
+        service: '',
+        communication: '',
+        note_service_client: '',
+        note_ponctualite: '',
+        note_confort: '',
+        note_reservation: '',
+        note_prix: '',
+        suggestion: '',
+        ajout_service: '',
         recommandation: ''
     })
 
     /*CheckedItems permet de selectionner et deselectionner une checkbox en fontion de l'etat d'une autre checkbox avec la fonction 
         handleChange associe */
     const [CheckedItems, setCheckedItems] = useState({
-        homme: false,
-        femme: false,
-        chaleureux: false,
-        pas_chaleureux: false,
-        proche_de_chez_moi: false,
-        pour_plus_conseils: false,
-        site_web: false,
-        paiement_facile: false,
-        attente_oui: false,
-        attente_non: false,
-        Entre_5minutes: false,
-        plus_15minutes: false,
-        tarification_oui: false,
-        tarification_non: false,
+        transport_passagers: false,
+        transport_fret: false,
+        com_oui: false,
+        com_non: false,
     })
     const handleChange = (event) => {
         const { name, checked } = event.target;
@@ -87,7 +73,7 @@ const AgencySurvey = () => {
     // Fonction qui permet d'envoyer les donnees stocker dans la variable data pour stocker les informations grace a axios
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://afrijet.pockethost.io/api/collections/AgenceSurvey/records', data, {
+        axios.post('https://afrijet.pockethost.io/api/collections/EntrepriseSurvey/records', data, {
             headers: {
                 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjgxNTQ0NzgsImlkIjoiamNxY3hiMjVyZDBpZG5uIiwidHlwZSI6ImFkbWluIn0.xzz72aFsquq--L38hXFh34oDmV-kXL_IkjRM49J28V4', // Token Administrateur PocketBase
                 'Content-Type': 'application/json',
@@ -96,7 +82,6 @@ const AgencySurvey = () => {
         })
             .then(response => {
                 console.log('Données envoyées avec succès');
-
                 // afficher la popUp après l'envoi des données
                 setIsPopVisible(true)
             })
@@ -134,8 +119,17 @@ const AgencySurvey = () => {
             variants={variants}
         >
             <div>
-                <Header />
-                <Fildariane />
+                <div className='header'>
+                    <div className='logo'>
+                        <img src={logoAfrijet} alt='logo Afrijet' />
+                    </div>
+                    <div className='customer_survey'>
+                        <h1>Enquête Corporate</h1>
+                    </div>
+                </div>
+                <div className='fil_ariane'>
+                    <p>Expérience de collaboration</p>
+                </div>
             </div>
             <form onSubmit={handleSubmit}>
                 <section>
@@ -143,49 +137,139 @@ const AgencySurvey = () => {
                         <br />
                     </div>
                     <div className='info-generales-info'>
-                        <h2>Informations générales</h2>
+                        <h2>Expérience de collaboration</h2>
                     </div>
                     <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
                         <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Etes-vous un(e) ?</legend>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Depuis combien de temps travaillez-vous avec Afrijet ?</legend>
                             <div className="mt-2 grid grid-cols-2">
                                 <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.homme}
-                                            onClick={handleChange}
-                                            onChange={(e) => setData({ ...data, sexe: e.target.value })}
-                                            disabled={CheckedItems.femme}
-                                            id="homme"
-                                            value="homme"
-                                            name="homme"
+                                            id="Moins de 1 ans"
+                                            value="Moins de 1 ans"
+                                            name="Moins de 1 ans"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, anciennete: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="homme" className="font-medium text-gray-900">
-                                            Homme
+                                        <label htmlFor="Moins de 1 ans" className="font-medium text-gray-900">
+                                            Moins de 1 ans
                                         </label>
                                     </div>
                                 </div>
                                 <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.femme}
-                                            onClick={handleChange}
-                                            onChange={(e) => setData({ ...data, sexe: e.target.value })}
-                                            disabled={CheckedItems.homme}
-                                            id="femme"
-                                            value="femme"
-                                            name="femme"
+                                            id="De 1 à 3 ans"
+                                            value="De 1 à 3 ans"
+                                            name="De 1 à 3 ans"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, anciennete: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="femme" className="font-medium text-gray-900">
-                                            Femme
+                                        <label htmlFor="De 1 à 3 ans" className="font-medium text-gray-900">
+                                            De 1 à 3 ans
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-2 grid grid-cols-2">
+                                <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="Plus de 3 ans"
+                                            value="Plus de 3 ans"
+                                            name="Plus de 3 ans"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, anciennete: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="Plus de 3 ans" className="font-medium text-gray-900">
+                                            Plus de 3 ans
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
+                        <fieldset>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Comment évalueriez-vous votre expérience globale avec Afrijet ?</legend>
+                            <div className="mt-2 grid grid-cols-2">
+                                <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="Satisfaisante"
+                                            value="Satisfaisante"
+                                            name="Satisfaisante"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, experience_globale: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="Satisfaisante" className="font-medium text-gray-900">
+                                            Satisfaisante
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="Moyenne"
+                                            value="Moyenne"
+                                            name="Moyenne"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, experience_globale: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="Moyenne" className="font-medium text-gray-900">
+                                            Moyenne
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-2 grid grid-cols-2">
+                                <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="Insatisfaisante"
+                                            value="Insatisfaisante"
+                                            name="Insatisfaisante"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, experience_globale: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="Insatisfaisante" className="font-medium text-gray-900">
+                                            Insatisfaisante
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="Très Insatisfaisante"
+                                            value="Très Insatisfaisante"
+                                            name="Très Insatisfaisante"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, experience_globale: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="Très Insatisfaisante" className="font-medium text-gray-900">
+                                            Très Insatisfaisante
                                         </label>
                                     </div>
                                 </div>
@@ -194,14 +278,14 @@ const AgencySurvey = () => {
                     </div>
                     <div className="mx-5 mt-5 sm:col-span-3 border-b border-gray-900/10 pb-5">
                         <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                            De quelle nationalité êtes-vous ?
+                            Dans quelle pays votre entreprise se trouve ?
                         </label>
                         <div className="mt-2">
                             <select
-                                id="nationalite"
-                                name="nationalite"
+                                id="localisation"
+                                name="localisation"
                                 className="bg-gray-200 block w-full rounded-md font-medium border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xl sm:text-sm sm:leading-6"
-                                onChange={(e) => setData({ ...data, nationalite: e.target.value })}
+                                onChange={(e) => setData({ ...data, localisation: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner votre pays</option>
                                 {
@@ -213,201 +297,73 @@ const AgencySurvey = () => {
                             </select>
                         </div>
                     </div>
-                    <div className="mx-5 mt-5 sm:col-span-3 border-b border-gray-900/10 pb-5">
-                        <label htmlFor="destination" className="block text-sm font-medium leading-6 text-gray-900">
-                            Vers quelle destination voyagez-vous le plus souvent ?
-                        </label>
-                        <div className="mt-2">
-                            <select
-                                id="destination"
-                                name="destination"
-                                className="bg-gray-200 block w-full rounded-md font-medium border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xl sm:text-sm sm:leading-6"
-                                onChange={(e) => setData({ ...data, destination: e.target.value })}
-                            >
-                                <option selected disabled>Veuillez sélectionner votre destination</option>
-                                <option>Douala</option>
-                                <option>Libreville</option>
-                                <option>Yaoundé</option>
-                                <option>Oyem</option>
-                                <option>Port-Gentil</option>
-                                <option>Franceville</option>
-                                <option>Kinshasa</option>
-                                <option>Ponite-Noire</option>
-                                <option>Brazzaville</option>
-                            </select>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <div className='space'>
-                        <br />
-                    </div>
-                    <div className='info-generales'>
-                        <h2>Agence</h2>
-                    </div>
-                    <div className="mx-5 mt-5 sm:col-span-3 border-b border-gray-900/10 pb-5">
-                        <label htmlFor="agence" className=" mt-4 block text-sm font-medium leading-6 text-gray-900">
-                            Dans quelle agence d'AFRIJET êtes-vous ?
-                        </label>
-                        <div className="mt-2">
-                            <select
-                                id="agence"
-                                name="agence"
-                                className="bg-gray-200 block w-full rounded-md font-medium border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xl sm:text-sm sm:leading-6"
-                                onChange={(e) => setData({ ...data, agence: e.target.value })}
-                            >
-                                <option selected disabled>Veuillez sélectionner votre agence</option>
-                                <option>Douala-Akwa</option>
-                                <option>Libreville-ADL</option>
-                                <option>Yaoundé-Elysée</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="mt-4 mx-4 border-b border-gray-900/10 pb-5">
-                        <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Comment jugez-vous l'acceuil au sein de nos agences ?</legend>
-                            <div className="mt-2 grid grid-cols-2">
-                                <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            checked={CheckedItems.chaleureux}
-                                            onClick={handleChange}
-                                            onChange={(e) => setData({ ...data, acceuil_agence: e.target.value })}
-                                            disabled={CheckedItems.pas_chaleureux}
-                                            id="chaleureux"
-                                            value="chaleureux"
-                                            name="chaleureux"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="chaleureux" className="font-medium text-gray-900">
-                                            Chaleureux
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            checked={CheckedItems.pas_chaleureux}
-                                            onClick={handleChange}
-                                            onChange={(e) => setData({ ...data, acceuil_agence: e.target.value })}
-                                            disabled={CheckedItems.chaleureux}
-                                            id="pas_chaleureux"
-                                            value="pas chaleureux"
-                                            name="pas_chaleureux"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="pas_chaleureux" className="font-medium text-gray-900">
-                                            Pas Chaleureux
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
                     <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
                         <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Pourquoi choisissez-vous de vous rendre en agence ?</legend>
-                            <div className="mt-2 grid grid-cols-2">
-                                <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            id="proche_de_chez_moi"
-                                            value="proche de chez moi"
-                                            name="proche_de_chez_moi"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, raison_agence: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="proche_de_chez_moi" className="font-medium text-gray-900">
-                                            Proche de chez moi
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            id="pour_plus_conseils"
-                                            value="pour plus de conseils"
-                                            name="pour_plus_conseils"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, raison_agence: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="pour_plus_conseils" className="font-medium text-gray-900">
-                                            Pour plus de conseils
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-2 grid grid-cols-2">
-                                <div className="flex gap-x-3 p-2 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            id="site_web"
-                                            value="effectuer le paiement"
-                                            name="site_web"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, raison_agence: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="site_web" className="font-medium text-gray-900">
-                                            J'ai utilisé le site web et je veux payer
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="flex gap-x-3 mx-4 p-2 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            id="paiement_facile"
-                                            value="paiement facile"
-                                            name="paiement_facile"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, raison_agence: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="paiement_facile" className="font-medium text-gray-900">
-                                            Le paiement est facile
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
-                        <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">L'agent qui vous a recu était-il à votre écoute et a-t-il répondu à vos attentes ?</legend>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Quels services d'Afrijet utilisez-vous principalement ?</legend>
                             <div className="mt-2 grid grid-cols-2">
                                 <div className="flex gap-x-3 p-3 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.attente_oui}
+                                            checked={CheckedItems.transport_passagers}
                                             onClick={handleChange}
-                                            disabled={CheckedItems.attente_non}
-                                            id="attente_oui"
-                                            value="attente satisfait"
-                                            name="attente_oui"
+                                            disabled={CheckedItems.transport_fret}
+                                            id="Transport de passagers"
+                                            value="Transport de passagers"
+                                            name="Transport de passagers"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, satisfaction_agent: e.target.value })}
+                                            onChange={(e) => setData({ ...data, service: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="attente_oui" className="font-medium text-gray-900">
+                                        <label htmlFor="Transport de passagers" className="font-medium text-gray-900">
+                                            Transport de passagers
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="flex gap-x-3 mx-4 p-3 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            checked={CheckedItems.transport_fret}
+                                            onClick={handleChange}
+                                            disabled={CheckedItems.transport_passagers}
+                                            id="Transport de fret"
+                                            value="Transport de fret"
+                                            name="Transport de fret"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, service: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="Transport de fret" className="font-medium text-gray-900">
+                                            Transport de fret
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
+                        <fieldset>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Êtes-vous satisfait des communications entre votre entreprise et Afrijet ?</legend>
+                            <div className="mt-2 grid grid-cols-2">
+                                <div className="flex gap-x-3 p-3 bg-gray-200 rounded">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            checked={CheckedItems.com_oui}
+                                            onClick={handleChange}
+                                            disabled={CheckedItems.com_non}
+                                            id="com_oui"
+                                            value="Oui"
+                                            name="com_oui"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            onChange={(e) => setData({ ...data, communication: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="com_oui" className="font-medium text-gray-900">
                                             Oui
                                         </label>
                                     </div>
@@ -415,113 +371,19 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-3 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.attente_non}
+                                            checked={CheckedItems.com_non}
                                             onClick={handleChange}
-                                            disabled={CheckedItems.attente_oui}
-                                            id="attente_non"
-                                            value="attente non satisfait"
-                                            name="attente_non"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, satisfaction_agent: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="attente_non" className="font-medium text-gray-900">
-                                            Non
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
-                        <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Votre temps d'attente avant votre prise en charge par un agent était :</legend>
-                            <div className="mt-2 grid grid-cols-2">
-                                <div className="flex gap-x-3 p-3 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            checked={CheckedItems.Entre_5minutes}
-                                            onClick={handleChange}
-                                            disabled={CheckedItems.plus_15minutes}
-                                            id="Entre_5minutes"
-                                            value="entre 5 et 15 minutes"
-                                            name="Entre_5minutes"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, temps_attente: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="Entre_5minutes" className="font-medium text-gray-900">
-                                            Entre 5 et 15 minutes
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="flex gap-x-3 mx-4 p-3 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            checked={CheckedItems.plus_15minutes}
-                                            onClick={handleChange}
-                                            disabled={CheckedItems.Entre_5minutes}
-                                            id="plus_15minutes"
-                                            value="plus de 15 minutes"
-                                            name="plus_15minutes"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, temps_attente: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="plus_15minutes" className="font-medium text-gray-900">
-                                            Plus de 15 minutes
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div className="mt-4 mx-5 border-b border-gray-900/10 pb-5">
-                        <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Etes-vous satisfait du choix du vendeur sur la tarification de votre billet ?</legend>
-                            <div className="mt-2 grid grid-cols-2">
-                                <div className="flex gap-x-3 p-3 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            checked={CheckedItems.tarification_oui}
-                                            onClick={handleChange}
-                                            disabled={CheckedItems.tarification_non}
-                                            id="tarification_oui"
-                                            value="satisfaire du tarif"
-                                            name="tarification_oui"
+                                            disabled={CheckedItems.com_oui}
+                                            id="com_non"
+                                            value="Non"
+                                            name="com_non"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, tarification: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="tarification_oui" className="font-medium text-gray-900">
-                                            Oui
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="flex gap-x-3 mx-4 p-3 bg-gray-200 rounded">
-                                    <div className="flex h-6 items-center">
-                                        <input
-                                            checked={CheckedItems.tarification_non}
-                                            onClick={handleChange}
-                                            disabled={CheckedItems.tarification_oui}
-                                            id="tarification_non"
-                                            value="pas satisfaire du tarif"
-                                            name="tarification_non"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="text-sm leading-6">
-                                        <label htmlFor="tarification_non" className="font-medium text-gray-900">
+                                        <label htmlFor="com_non" className="font-medium text-gray-900">
                                             Non
                                         </label>
                                     </div>
@@ -535,68 +397,37 @@ const AgencySurvey = () => {
                         <br />
                     </div>
                     <div className='info-generales'>
-                        <h2>SERVICES AFRIJET</h2>
+                        <h2>Satisfaction des services</h2>
                     </div>
                     <div className='mt-4 mx-5'>
-                        <p className='mt-8'>S'il fallait noter de 1 à 4, la clarté des explications sur les différents services additionnels</p>
+                        <p className='mt-8'>S'il fallait noter de 1 à 4, les différents services d'AFRIJET</p>
                         <small className='text-xs text-gray-700'>(La note 1 exprime un très faible dégré de satisfaction, la note 4 reflète un haut dégré de satisfaction)</small>
                     </div>
-                    <div class="bg-white mt-4 px-6 border-b border-gray-900/10 pb-3">
-                        <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Programme de fidélité :</legend>
-                            <div className="mt-4 grid grid-cols-4">
-                                <div class="flex items-center mb-4">
-                                    <input type="checkbox" id="note_programme_1" name="note" value="1" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_programme_fidelite: e.target.value })}
-                                    />
-                                    <label for="note_programme_1" class="text-gray-700">1</label>
-                                </div>
-                                <div class="flex items-center mb-4">
-                                    <input type="checkbox" id="note_programme_2" name="note" value="2" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_programme_fidelite: e.target.value })}
-                                    />
-                                    <label for="note_programme_2" class="text-gray-700">2</label>
-                                </div>
-                                <div class="flex items-center mb-4">
-                                    <input type="checkbox" id="note_programme_3" name="note" value="3" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_programme_fidelite: e.target.value })}
-                                    />
-                                    <label for="note_programme_3" class="text-gray-700">3</label>
-                                </div>
-                                <div class="flex items-center mb-4">
-                                    <input type="checkbox" id="note_programme_4" name="note" value="4" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_programme_fidelite: e.target.value })}
-                                    />
-                                    <label for="note_programme_4" class="text-gray-700">4</label>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
                     <div class="bg-white px-6 border-b border-gray-900/10 pb-3">
                         <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Salon Business :</legend>
+                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Qualité du service client :</legend>
                             <div className="mt-4 grid grid-cols-4">
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note1" name="note" value="1" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_salon_business: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_service_client: e.target.value })}
                                     />
                                     <label for="note1" class="text-gray-700">1</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note2" name="note" value="2" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_salon_business: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_service_client: e.target.value })}
                                     />
                                     <label for="note2" class="text-gray-700">2</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note3" name="note" value="3" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_salon_business: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_service_client: e.target.value })}
                                     />
                                     <label for="note3" class="text-gray-700">3</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note4" name="note" value="4" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_salon_business: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_service_client: e.target.value })}
                                     />
                                     <label for="note4" class="text-gray-700">4</label>
                                 </div>
@@ -605,29 +436,29 @@ const AgencySurvey = () => {
                     </div>
                     <div class="bg-white px-6 border-b border-gray-900/10 pb-3">
                         <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Bagage supplémentaire :</legend>
+                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Ponctualités des vols :</legend>
                             <div className="mt-4 grid grid-cols-4">
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note1" name="note" value="1" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_bagage: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_ponctualite: e.target.value })}
                                     />
                                     <label for="note1" class="text-gray-700">1</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note2" name="note" value="2" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_bagage: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_ponctualite: e.target.value })}
                                     />
                                     <label for="note2" class="text-gray-700">2</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note3" name="note" value="3" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_bagage: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_ponctualite: e.target.value })}
                                     />
                                     <label for="note3" class="text-gray-700">3</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note4" name="note" value="4" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_bagage: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_ponctualite: e.target.value })}
                                     />
                                     <label for="note4" class="text-gray-700">4</label>
                                 </div>
@@ -636,29 +467,29 @@ const AgencySurvey = () => {
                     </div>
                     <div class="bg-white px-6 border-b border-gray-900/10 pb-3">
                         <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Service UM :</legend>
+                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Confort à bord :</legend>
                             <div className="mt-4 grid grid-cols-4">
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note1" name="note" value="1" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_serviceUM: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_confort: e.target.value })}
                                     />
                                     <label for="note1" class="text-gray-700">1</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note2" name="note" value="2" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_serviceUM: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_confort: e.target.value })}
                                     />
                                     <label for="note2" class="text-gray-700">2</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note3" name="note" value="3" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_serviceUM: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_confort: e.target.value })}
                                     />
                                     <label for="note3" class="text-gray-700">3</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note4" name="note" value="4" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_serviceUM: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_confort: e.target.value })}
                                     />
                                     <label for="note4" class="text-gray-700">4</label>
                                 </div>
@@ -667,29 +498,29 @@ const AgencySurvey = () => {
                     </div>
                     <div class="bg-white px-6 border-b border-gray-900/10 pb-3">
                         <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Animaux en cabine :</legend>
+                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Gestion des réservations :</legend>
                             <div className="mt-4 grid grid-cols-4">
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note1" name="note" value="1" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_cabine: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_reservation: e.target.value })}
                                     />
                                     <label for="note1" class="text-gray-700">1</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note2" name="note" value="2" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_cabine: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_reservation: e.target.value })}
                                     />
                                     <label for="note2" class="text-gray-700">2</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note3" name="note" value="3" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_cabine: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_reservation: e.target.value })}
                                     />
                                     <label for="note3" class="text-gray-700">3</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note4" name="note" value="4" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_cabine: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_reservation: e.target.value })}
                                     />
                                     <label for="note4" class="text-gray-700">4</label>
                                 </div>
@@ -698,38 +529,76 @@ const AgencySurvey = () => {
                     </div>
                     <div class="bg-white px-6 border-b border-gray-900/10 pb-3">
                         <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Animaux en soute :</legend>
+                            <legend class="text-sm font-semibold leading-6 text-gray-900 pt-4">Rapport qualité/prix :</legend>
                             <div className="mt-4 grid grid-cols-4">
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note1" name="note" value="1" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_soute: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_prix: e.target.value })}
                                     />
                                     <label for="note1" class="text-gray-700">1</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note2" name="note" value="2" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_soute: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_prix: e.target.value })}
                                     />
                                     <label for="note2" class="text-gray-700">2</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note3" name="note" value="3" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_soute: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_prix: e.target.value })}
                                     />
                                     <label for="note3" class="text-gray-700">3</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input type="checkbox" id="note4" name="note" value="4" class="mr-2"
-                                        onChange={(e) => setData({ ...data, note_animal_soute: e.target.value })}
+                                        onChange={(e) => setData({ ...data, note_prix: e.target.value })}
                                     />
                                     <label for="note4" class="text-gray-700">4</label>
                                 </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </section>
+                <section>
+                    <div className='space'>
+                        <br />
+                    </div>
+                    <div className='info-generales'>
+                        <h2>SUGGESTIONS</h2>
+                    </div>
+                    <div className="mt-4 mx-4 pb-5">
+                        <fieldset>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Quelles améliorations suggéreriez-vous pour nos services ?</legend>
+                            <div class="mt-2">
+                                <textarea id="suggestion"
+                                    name="suggestion"
+                                    rows="3"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-gray-200"
+                                    onChange={(e) => setData({ ...data, suggestion: e.target.value })}
+                                >
+
+                                </textarea>
                             </div>
                         </fieldset>
                     </div>
                     <div className="mt-4 mx-4 pb-5">
                         <fieldset>
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Recommanderiez-vous AFRIJET à une de vos connaissances ? Pourquoi ?</legend>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Y a-t-il des services que vous aimeriez voir ajoutés ?</legend>
+                            <div class="mt-2">
+                                <input id="ajout_service"
+                                    name="ajout_service"
+                                    rows="3"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-gray-200"
+                                    onChange={(e) => setData({ ...data, ajout_service: e.target.value })}
+                                >
+
+                                </input>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div className="mt-4 mx-4 pb-5">
+                        <fieldset>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Recommanderiez-vous AFRIJET à une autre entreprise ? Pourquoi ou Pourquoi pas ?</legend>
                             <div class="mt-2">
                                 <textarea id="recommandation"
                                     name="recommandation"
@@ -780,6 +649,7 @@ const AgencySurvey = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+
 
         </motion.div>
     )
