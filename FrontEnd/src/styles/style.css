@@ -85,6 +85,10 @@ section {
     font-size: 15px;
 }
 
+.span-fil {
+    padding: -30px;
+}
+
 /* Body */
 .info-generales {
     margin: 0 auto;
@@ -246,6 +250,10 @@ body {
         font-size: 10px;
     }
 
+    .span-fil {
+        padding: -30px;
+    }
+
     /* Debut de la page AgenceSurvey */
     .info-generales {
         margin: 0 auto;
@@ -300,7 +308,7 @@ body {
     }
 
     .welcome-section {
-        margin-top: -60px;
+        margin-top: 0px;
     }
 
     .options li {
@@ -392,6 +400,10 @@ body {
         position: fixed;
         top: 100px;
         width: 100vw;
+    }
+
+    .span-fil {
+        padding: -30px;
     }
 
     .fil_ariane p {
