@@ -8,6 +8,18 @@ import logoAfrijet from '../assets/images/Logo.png'
 
 const AgencySurvey = () => {
 
+    const sectionRefs = {
+        experience: useRef(null),
+        services: useRef(null),
+        recommendation: useRef(null),
+    };
+
+    const sections = [
+        { label: 'Expérience de collaboration', ref: sectionRefs.experience },
+        { label: 'Satifactions services', ref: sectionRefs.services },
+        { label: 'Suggestions', ref: sectionRefs.suggestions },
+    ];
+
     const [isPopVisible, setIsPopVisible] = useState(false); // Declaration de la variable pour la popUp
     const popupRef = useRef(null)
 
@@ -84,6 +96,7 @@ const AgencySurvey = () => {
                 console.log('Données envoyées avec succès');
                 // afficher la popUp après l'envoi des données
                 setIsPopVisible(true)
+                setData(''); // Réinitialise le champ de données
             })
             .catch(err => console.log(err))
     }
@@ -128,11 +141,23 @@ const AgencySurvey = () => {
                     </div>
                 </div>
                 <div className='fil_ariane'>
-                    <p>Expérience de collaboration</p>
+                    <ol className="list-none flex">
+                        {sections.map((section, index) => (
+                            <li key={index} className="flex items-center">
+                                {index > 0 && <span className="text-gray-100"> &gt; </span>}
+                                <a
+                                    href={`#${section.label.toLowerCase()}`}
+                                    className="text-blue-600 hover:text-blue-800 focus:text-brown-600 focus:outline-none focus:ring-2 focus:ring-brown-300"
+                                >
+                                    <p>{section.label}</p>
+                                </a>
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
-                <section>
+                <section ref={sectionRefs.experience} id="expérience de collaboration">
                     <div className='space'>
                         <br />
                     </div>
@@ -304,19 +329,19 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 p-3 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.transport_passagers}
+                                            checked={CheckedItems.transport_fret}
                                             onClick={handleChange}
-                                            disabled={CheckedItems.transport_fret}
-                                            id="Transport_passagers"
-                                            value="Transport de passagers"
-                                            name="Transport_passagers"
+                                            disabled={CheckedItems.transport_passagers}
+                                            id="transport_fret"
+                                            value="Transport Fret"
+                                            name="transport_fret"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, service: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Transport_passagers" className="font-medium text-gray-900">
+                                        <label htmlFor="transport_fret" className="font-medium text-gray-900">
                                             Transport de passagers
                                         </label>
                                     </div>
@@ -324,20 +349,20 @@ const AgencySurvey = () => {
                                 <div className="flex gap-x-3 mx-4 p-3 bg-gray-200 rounded">
                                     <div className="flex h-6 items-center">
                                         <input
-                                            checked={CheckedItems.transport_fret}
+                                            checked={CheckedItems.transport_passagers}
                                             onClick={handleChange}
-                                            disabled={CheckedItems.transport_passagers}
-                                            id="Transport_fret"
-                                            value="Transport de fret"
-                                            name="Transport_fret"
+                                            disabled={CheckedItems.transport_fret}
+                                            id="transport_passagers"
+                                            value="Transort passagers"
+                                            name="transport_passagers"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                             onChange={(e) => setData({ ...data, service: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
-                                        <label htmlFor="Transport_fret" className="font-medium text-gray-900">
-                                            Transport de fret
+                                        <label htmlFor="transport_passagers" className="font-medium text-gray-900">
+                                            Transport Fret
                                         </label>
                                     </div>
                                 </div>
@@ -379,7 +404,7 @@ const AgencySurvey = () => {
                                             name="com_non"
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            onChange={(e) => setData({ ...data, tarification: e.target.value })}
+                                            onChange={(e) => setData({ ...data, communication: e.target.value })}
                                         />
                                     </div>
                                     <div className="text-sm leading-6">
@@ -392,7 +417,7 @@ const AgencySurvey = () => {
                         </fieldset>
                     </div>
                 </section>
-                <section>
+                <section ref={sectionRefs.services} id="satifactions services">
                     <div className='space'>
                         <br />
                     </div>
@@ -559,7 +584,7 @@ const AgencySurvey = () => {
                         </fieldset>
                     </div>
                 </section>
-                <section>
+                <section ref={sectionRefs.suggestions} id="suggestions">
                     <div className='space'>
                         <br />
                     </div>

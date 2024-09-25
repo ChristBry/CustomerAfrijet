@@ -8,6 +8,18 @@ import logoAfrijet from '../assets/images/Logo.png'
 
 const AgencySurvey = () => {
 
+    const sectionRefs = {
+        infos: useRef(null),
+        experience: useRef(null),
+        services: useRef(null),
+    };
+
+    const sections = [
+        { label: 'Informations générales', ref: sectionRefs.infos },
+        { label: 'Expérience enregistrement', ref: sectionRefs.experience },
+        { label: 'Services et commodités', ref: sectionRefs.services },
+    ];
+
     const [isPopVisible, setIsPopVisible] = useState(false); // Declaration de la variable pour la popUp
     const popupRef = useRef(null)
 
@@ -90,6 +102,7 @@ const AgencySurvey = () => {
                 console.log('Données envoyées avec succès');
                 // afficher la popUp après l'envoi des données
                 setIsPopVisible(true)
+                setData(''); // Réinitialise le champ de données
             })
             .catch(err => console.log(err))
     }
@@ -133,11 +146,23 @@ const AgencySurvey = () => {
                     </div>
                 </div>
                 <div className='fil_ariane'>
-                    <p>Informations générales</p>
+                    <ol className="list-none flex">
+                        {sections.map((section, index) => (
+                            <li key={index} className="flex items-center">
+                                {index > 0 && <span className="text-gray-100 span-fil"> &gt; </span>}
+                                <a
+                                    href={`#${section.label.toLowerCase()}`}
+                                    className="text-blue-600 hover:text-blue-800 focus:text-brown-600 focus:outline-none focus:ring-2 focus:ring-brown-300"
+                                >
+                                    <p>{section.label}</p>
+                                </a>
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
-                <section>
+                <section ref={sectionRefs.infos} id="informations générales">
                     <div className='space'>
                         <br />
                     </div>
@@ -271,7 +296,7 @@ const AgencySurvey = () => {
                         </div>
                     </div>
                 </section>
-                <section>
+                <section ref={sectionRefs.infos} id="expérience enregistrement">
                     <div className='space'>
                         <br />
                     </div>
@@ -543,7 +568,7 @@ const AgencySurvey = () => {
                         </fieldset>
                     </div>
                 </section>
-                <section>
+                <section ref={sectionRefs.infos} id="services et commodités">
                     <div className='space'>
                         <br />
                     </div>

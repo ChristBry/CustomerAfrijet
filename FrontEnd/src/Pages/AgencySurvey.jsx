@@ -1,13 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../styles/style.css'
 import Header from '../composants/header'
-import Fildariane from '../composants/fildariane'
 import axios from 'axios'
 import countryData from '../composants/country.json';
 import { motion } from 'framer-motion'
 import { AnimatePresence } from 'framer-motion'
 
 const AgencySurvey = () => {
+
+    const sectionRefs = {
+        infos: useRef(null),
+        agence: useRef(null),
+        services: useRef(null),
+    };
+
+    const sections = [
+        { label: 'Informations générales', ref: sectionRefs.infos },
+        { label: 'Agence', ref: sectionRefs.agence },
+        { label: 'Services Afrijet', ref: sectionRefs.services },
+    ];
 
     const [isPopVisible, setIsPopVisible] = useState(false); // Declaration de la variable pour la popUp
     const popupRef = useRef(null)
@@ -99,6 +110,7 @@ const AgencySurvey = () => {
 
                 // afficher la popUp après l'envoi des données
                 setIsPopVisible(true)
+                setData('')
             })
             .catch(err => console.log(err))
     }
@@ -135,10 +147,24 @@ const AgencySurvey = () => {
         >
             <div>
                 <Header />
-                <Fildariane />
+                <div className='fil_ariane'>
+                    <ol className="list-none flex">
+                        {sections.map((section, index) => (
+                            <li key={index} className="flex items-center">
+                                {index > 0 && <span className="text-gray-100 span-fil"> &gt; </span>}
+                                <a
+                                    href={`#${section.label.toLowerCase()}`}
+                                    className="text-blue-600 hover:text-blue-800 focus:text-brown-600 focus:outline-none focus:ring-2 focus:ring-brown-300"
+                                >
+                                    <p>{section.label}</p>
+                                </a>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             </div>
             <form onSubmit={handleSubmit}>
-                <section>
+                <section ref={sectionRefs.infos} id="informations générales">
                     <div className='space'>
                         <br />
                     </div>
@@ -243,7 +269,7 @@ const AgencySurvey = () => {
                         </div>
                     </div>
                 </section>
-                <section>
+                <section ref={sectionRefs.agence} id="agence">
                     <div className='space'>
                         <br />
                     </div>
@@ -560,7 +586,7 @@ const AgencySurvey = () => {
                         </fieldset>
                     </div>
                 </section>
-                <section>
+                <section ref={sectionRefs.infos} id="services afrijet">
                     <div className='space'>
                         <br />
                     </div>
