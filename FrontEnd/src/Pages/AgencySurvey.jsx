@@ -225,15 +225,20 @@ const AgencySurvey = () => {
                                 onChange={(e) => setData({ ...data, destination: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner votre destination</option>
+                                <option>Brazzaville</option>
+                                <option>Kinshasa</option>
+                                <option>Cotonou</option>
                                 <option>Douala</option>
+                                <option>Franceville</option>
                                 <option>Libreville</option>
-                                <option>Yaoundé</option>
                                 <option>Oyem</option>
                                 <option>Port-Gentil</option>
-                                <option>Franceville</option>
-                                <option>Kinshasa</option>
-                                <option>Ponite-Noire</option>
-                                <option>Brazzaville</option>
+                                <option>Bata</option>
+                                <option>Pointe-Noire</option>
+                                <option>Malabo</option>
+                                <option>Sao Tomé</option>
+                                <option>Principe</option>
+                                <option>Yaoundé</option>
                             </select>
                         </div>
                     </div>
@@ -257,9 +262,34 @@ const AgencySurvey = () => {
                                 onChange={(e) => setData({ ...data, agence: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner votre agence</option>
+                                <option>Bata-BSG</option>
+                                <option>Brazzaville-Airport</option>
+                                <option>Cotonou-COO</option>
+                                <option>Cotonou-Airport</option>
                                 <option>Douala-Akwa</option>
-                                <option>Libreville-ADL</option>
+                                <option>Douala-Airport</option>
+                                <option>Mvengue-Airport</option>
+                                <option>Mvengue-FCV</option>
+                                <option>Libreville-ADL-GSEZ</option>
+                                <option>Libreville-Casino</option>
+                                <option>Libreville-Lotus</option>
+                                <option>Libreville-Owendo</option>
+                                <option>Libreville-Parasolier</option>
+                                <option>Libreville-Terminal 2</option>
+                                <option>Port Gentil-POG</option>
+                                <option>Port Gentil-Airport</option>
+                                <option>Pointe Noire-Elais</option>
+                                <option>Pointe Noire-Airport</option>
+                                <option>Oyem-Airport</option>
+                                <option>Oyem-OYE</option>
+                                <option>Malabo-Airport</option>
+                                <option>Malabo-SSG</option>
+                                <option>Principe-Airport</option>
+                                <option>Sao Tomé-Airport</option>
+                                <option>Sao Tomé-TMS</option>
+                                <option>Malabo-Airport</option>
                                 <option>Yaoundé-Elysée</option>
+                                <option>Yaoundé-Airport</option>
                             </select>
                         </div>
                     </div>

@@ -224,15 +224,20 @@ const AgencySurvey = () => {
                                 onChange={(e) => setData({ ...data, escale: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner l'escale</option>
-                                <option>Cameroun - Douala</option>
-                                <option>Gabon - Libreville</option>
-                                <option>Cameroun - Yaoundé</option>
-                                <option>Gabon - Oyem</option>
-                                <option>Gabon - Port-Gentil</option>
-                                <option>Gabon - Franceville</option>
-                                <option>RDC - Kinshasa</option>
-                                <option>Congo - Ponite-Noire</option>
-                                <option>Congo - Brazzaville</option>
+                                <option>Brazzaville</option>
+                                <option>Kinshasa</option>
+                                <option>Cotonou</option>
+                                <option>Douala</option>
+                                <option>Franceville</option>
+                                <option>Libreville</option>
+                                <option>Oyem</option>
+                                <option>Port-Gentil</option>
+                                <option>Bata</option>
+                                <option>Pointe-Noire</option>
+                                <option>Malabo</option>
+                                <option>Sao Tomé</option>
+                                <option>Principe</option>
+                                <option>Yaoundé</option>
                             </select>
                         </div>
                     </div>
@@ -248,15 +253,20 @@ const AgencySurvey = () => {
                                 onChange={(e) => setData({ ...data, destination: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner votre destination</option>
-                                <option>Cameroun - Douala</option>
-                                <option>Gabon - Libreville</option>
-                                <option>Cameroun - Yaoundé</option>
-                                <option>Gabon - Oyem</option>
-                                <option>Gabon - Port-Gentil</option>
-                                <option>Gabon - Franceville</option>
-                                <option>RDC - Kinshasa</option>
-                                <option>Congo - Ponite-Noire</option>
-                                <option>Congo - Brazzaville</option>
+                                <option>Brazzaville</option>
+                                <option>Kinshasa</option>
+                                <option>Cotonou</option>
+                                <option>Douala</option>
+                                <option>Franceville</option>
+                                <option>Libreville</option>
+                                <option>Oyem</option>
+                                <option>Port-Gentil</option>
+                                <option>Bata</option>
+                                <option>Pointe-Noire</option>
+                                <option>Malabo</option>
+                                <option>Sao Tomé</option>
+                                <option>Principe</option>
+                                <option>Yaoundé</option>
                             </select>
                         </div>
                     </div>

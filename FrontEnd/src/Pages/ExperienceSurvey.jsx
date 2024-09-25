@@ -227,15 +227,20 @@ const AgencySurvey = () => {
                                 onChange={(e) => setData({ ...data, depart: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner la ville</option>
+                                <option>Brazzaville</option>
+                                <option>Kinshasa</option>
+                                <option>Cotonou</option>
                                 <option>Douala</option>
+                                <option>Franceville</option>
                                 <option>Libreville</option>
-                                <option>Yaoundé</option>
                                 <option>Oyem</option>
                                 <option>Port-Gentil</option>
-                                <option>Franceville</option>
-                                <option>Kinshasa</option>
-                                <option>Ponite-Noire</option>
-                                <option>Brazzaville</option>
+                                <option>Bata</option>
+                                <option>Pointe-Noire</option>
+                                <option>Malabo</option>
+                                <option>Sao Tomé</option>
+                                <option>Principe</option>
+                                <option>Yaoundé</option>
                             </select>
                         </div>
                     </div>
@@ -251,15 +256,20 @@ const AgencySurvey = () => {
                                 onChange={(e) => setData({ ...data, destination: e.target.value })}
                             >
                                 <option selected disabled>Veuillez sélectionner votre destination</option>
+                                <option>Brazzaville</option>
+                                <option>Kinshasa</option>
+                                <option>Cotonou</option>
                                 <option>Douala</option>
+                                <option>Franceville</option>
                                 <option>Libreville</option>
-                                <option>Yaoundé</option>
                                 <option>Oyem</option>
                                 <option>Port-Gentil</option>
-                                <option>Franceville</option>
-                                <option>Kinshasa</option>
-                                <option>Ponite-Noire</option>
-                                <option>Brazzaville</option>
+                                <option>Bata</option>
+                                <option>Pointe-Noire</option>
+                                <option>Malabo</option>
+                                <option>Sao Tomé</option>
+                                <option>Principe</option>
+                                <option>Yaoundé</option>
                             </select>
                         </div>
                     </div>
